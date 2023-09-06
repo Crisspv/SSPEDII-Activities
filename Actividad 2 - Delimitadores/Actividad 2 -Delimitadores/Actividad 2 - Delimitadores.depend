@@ -1,0 +1,106 @@
+# depslib dependency file v1.0
+1693676196 source:c:\users\kiyoshi\desktop\actividad 2 - delimitadores\main.cpp
+	<iostream>
+	<cstdlib>
+	"Calculator.h"
+	"File.h"
+
+1693672674 source:c:\users\kiyoshi\desktop\actividad 2 - delimitadores\src\calculator.cpp
+	"Calculator.h"
+
+1693672717 c:\users\kiyoshi\desktop\actividad 2 - delimitadores\include\calculator.h
+	<iostream>
+
+1693679771 c:\users\kiyoshi\desktop\actividad 2 - delimitadores\include\file.h
+	<iostream>
+	<fstream>
+	<ctime>
+	<string.h>
+	"Calculator.h"
+
+1693683042 source:c:\users\kiyoshi\desktop\actividad 2 - delimitadores\src\file.cpp
+	"File.h"
+
+1693864560 source:c:\users\cmich\downloads\actividad 2 - delimitadores\actividad 2 - delimitadores\main.cpp
+	<iostream>
+	<cstdlib>
+	"Calculator.h"
+	"File.h"
+
+1693864561 c:\users\cmich\downloads\actividad 2 - delimitadores\actividad 2 - delimitadores\include\calculator.h
+	<iostream>
+
+1693865048 c:\users\cmich\downloads\actividad 2 - delimitadores\actividad 2 - delimitadores\include\file.h
+	<iostream>
+	<fstream>
+	<ctime>
+	<string.h>
+	"Calculator.h"
+
+1693864561 source:c:\users\cmich\downloads\actividad 2 - delimitadores\actividad 2 - delimitadores\src\calculator.cpp
+	"Calculator.h"
+
+1693866623 source:c:\users\cmich\downloads\actividad 2 - delimitadores\actividad 2 - delimitadores\src\file.cpp
+	"File.h"
+
+1693970818 source:d:\usuarios\cristian\descargas\actividad 2 - delimitadores\main.cpp
+	<iostream>
+	<cstdlib>
+	"Calculator.h"
+	"File.h"
+
+1693864562 d:\usuarios\cristian\descargas\actividad 2 - delimitadores\include\calculator.h
+	<iostream>
+
+1693970520 d:\usuarios\cristian\descargas\actividad 2 - delimitadores\include\file.h
+	<iostream>
+	<fstream>
+	<ctime>
+	<string.h>
+	"Calculator.h"
+
+1693864562 source:d:\usuarios\cristian\descargas\actividad 2 - delimitadores\src\calculator.cpp
+	"Calculator.h"
+
+1693867030 source:d:\usuarios\cristian\descargas\actividad 2 - delimitadores\src\file.cpp
+	"File.h"
+
+1693983984 source:c:\users\kiyoshi\downloads\actividad 2 - delimitadores\main.cpp
+	<iostream>
+	<cstdlib>
+	"Calculator.h"
+	"File.h"
+
+1693864562 c:\users\kiyoshi\downloads\actividad 2 - delimitadores\include\calculator.h
+	<iostream>
+
+1693985201 c:\users\kiyoshi\downloads\actividad 2 - delimitadores\include\file.h
+	<iostream>
+	<fstream>
+	<ctime>
+	"Calculator.h"
+
+1693864562 source:c:\users\kiyoshi\downloads\actividad 2 - delimitadores\src\calculator.cpp
+	"Calculator.h"
+
+1693983087 source:c:\users\kiyoshi\downloads\actividad 2 - delimitadores\src\file.cpp
+	"File.h"
+
+1693983986 source:d:\usuarios\cristian\descargas\actividad 2 - delimitadores tuneada\main.cpp
+	<iostream>
+	<cstdlib>
+	"Calculator.h"
+	"File.h"
+
+1693864562 d:\usuarios\cristian\descargas\actividad 2 - delimitadores tuneada\include\calculator.h
+	<iostream>
+
+1693985202 d:\usuarios\cristian\descargas\actividad 2 - delimitadores tuneada\include\file.h
+	<iostream>
+	<fstream>
+	<ctime>
+	"Calculator.h"
+
+1693864562 source:d:\usuarios\cristian\descargas\actividad 2 - delimitadores tuneada\src\calculator.cpp
+	"Calculator.h"
+
