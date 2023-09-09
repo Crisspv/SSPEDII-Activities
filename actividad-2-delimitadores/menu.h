@@ -17,7 +17,7 @@ private:
   void calculatorMenu();
   void fileMenu();
   void printCalc(Calculator);
-  void modifyCalc(Calculator &);
+  void modifyRegistry(Calculator &);
 
 public:
   Menu();

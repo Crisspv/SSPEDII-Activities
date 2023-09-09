@@ -19,6 +19,7 @@ public:
   list<Calculator> readFromFile();
   void writeToFile(Calculator);
   void writeListToTempFile(list<Calculator>);
+  void renameFiles();
 
   int getLastId();
 };

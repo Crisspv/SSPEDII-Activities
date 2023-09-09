@@ -25,7 +25,9 @@ void Menu::showMainMenu()
 
   do
   {
-    // cls();
+    cls();
+    cout << "MENU PRINCIPAL" << endl
+         << endl;
     cout << "1. Calculadora" << endl;
     cout << "2. Archivo" << endl;
     cout << "c. Salir" << endl
@@ -89,7 +91,6 @@ void Menu::calculatorMenu()
       cin >> num2;
       cin.ignore();
 
-      // obtener id
       newId = myFile.getLastId() + 1;
       myCalc.setId(newId);
       myCalc.setNum1(num1);
@@ -182,6 +183,7 @@ void Menu::fileMenu()
 
   int search;
   char operation;
+  bool isFound = false;
 
   do
   {
@@ -192,8 +194,8 @@ void Menu::fileMenu()
     cout << "1. Agregar" << endl;
     cout << "2. Mostrar todo" << endl;
     cout << "3. Buscar" << endl;
-    cout << "5. Modificar" << endl;
-    cout << "6. eliminar" << endl;
+    cout << "4. Modificar" << endl;
+    cout << "5. eliminar" << endl;
     cout << "c. Regresar"
          << endl
          << endl;
@@ -228,10 +230,17 @@ void Menu::fileMenu()
       {
         if (search == it->getId())
         {
+          isFound = true;
           printCalc(*it);
           enterToContinue();
           break;
         }
+      }
+
+      if (!isFound)
+      {
+        cout << "Registro no encontrado..." << endl;
+        enterToContinue();
       }
       break;
 
@@ -245,15 +254,59 @@ void Menu::fileMenu()
       {
         if (search == it->getId())
         {
-          modifyCalc(*it);
+          isFound = true;
+          modifyRegistry(*it);
+          break;
         }
       }
+
+      if (!isFound)
+      {
+        cout << "Reistro no encontrado..." << endl;
+        enterToContinue();
+      }
+
+      myFile.writeListToTempFile(calcList);
+      myFile.renameFiles();
+      cout << "Registro modificado con exito..." << endl;
+      enterToContinue();
       break;
 
     case '5':
-      break;
+      cout << "Ingresa el id a elminar: ";
+      cin >> search;
+      cin.ignore();
 
-    case '6':
+      calcList = myFile.readFromFile();
+      it = calcList.begin();
+      while (it != calcList.end())
+      {
+        if (search == it->getId())
+        {
+          isFound = true;
+          cout << "Registro encontrado!" << endl;
+          printCalc(*it);
+          it = calcList.erase(it);
+          break;
+        }
+        else
+        {
+          it++;
+        }
+      }
+
+      if (!isFound)
+      {
+        cout << "Registro no encontrado..." << endl;
+        enterToContinue();
+      }
+      else
+      {
+        myFile.writeListToTempFile(calcList);
+        myFile.renameFiles();
+        cout << "Registro eliminado con exito..." << endl;
+        enterToContinue();
+      }
       break;
 
     case 'c':
@@ -266,7 +319,7 @@ void Menu::fileMenu()
   } while (choice != 'c');
 }
 
-void Menu::modifyCalc(Calculator &calc)
+void Menu::modifyRegistry(Calculator &calc)
 {
   char choice;
   int num1, num2;
@@ -276,6 +329,8 @@ void Menu::modifyCalc(Calculator &calc)
     cls();
     cout << "Elemento encontrado!" << endl
          << endl;
+
+    printCalc(calc);
 
     cout << "Elije operacion nueva:" << endl;
     cout << "1. Suma" << endl;
@@ -303,6 +358,52 @@ void Menu::modifyCalc(Calculator &calc)
       calc.setNum1(num1);
       calc.setNum2(num2);
       calc.sum();
+      choice = 'c';
+      break;
+
+    case '2':
+      cout << "Num1: ";
+      cin >> num1;
+      cin.ignore();
+
+      cout << "Num2: ";
+      cin >> num2;
+      cin.ignore();
+
+      calc.setNum1(num1);
+      calc.setNum2(num2);
+      calc.subtraction();
+      choice = 'c';
+      break;
+
+    case '3':
+      cout << "Num1: ";
+      cin >> num1;
+      cin.ignore();
+
+      cout << "Num2: ";
+      cin >> num2;
+      cin.ignore();
+
+      calc.setNum1(num1);
+      calc.setNum2(num2);
+      calc.multiplication();
+      choice = 'c';
+      break;
+
+    case '4':
+      cout << "Num1: ";
+      cin >> num1;
+      cin.ignore();
+
+      cout << "Num2: ";
+      cin >> num2;
+      cin.ignore();
+
+      calc.setNum1(num1);
+      calc.setNum2(num2);
+      calc.division();
+      choice = 'c';
       break;
 
     case 'c':

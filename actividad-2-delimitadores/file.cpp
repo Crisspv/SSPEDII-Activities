@@ -63,6 +63,12 @@ void File::writeListToTempFile(list<Calculator> calcList)
   writeFile.close();
 }
 
+void File::renameFiles()
+{
+  remove(FILE_NAME);
+  rename(TEMP_FILE_NAME, FILE_NAME);
+}
+
 int File::getLastId()
 {
   ifstream readFile(FILE_NAME);
