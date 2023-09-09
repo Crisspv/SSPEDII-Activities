@@ -27,6 +27,8 @@ public:
   void multiplication();
   void division();
 
+  void generateDate();
+
   int getId();
   void setId(int);
   string getOperation();

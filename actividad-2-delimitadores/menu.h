@@ -14,6 +14,8 @@ private:
   void cls();
   void enterToContinue();
   void calculatorMenu();
+  void fileMenu();
+  void printCalc(Calculator);
 
 public:
   Menu();

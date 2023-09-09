@@ -4,43 +4,58 @@ File::File()
 {
 }
 
-void File::readFromFile()
+list<Calculator> File::readFromFile()
 {
   ifstream readFile(FILE_NAME);
+  list<Calculator> calcList;
 
-  if (!readFile.is_open())
+  if (!readFile.good())
   {
-    throw bad_alloc();
+    cout << "Problemas con el archivo..." << endl;
   }
-
-  Calculator calcNode;
-  while (readFile >> calcNode)
+  else
   {
-    calculatorList->push_back(calcNode);
+    Calculator auxCalc;
+
+    while (readFile >> auxCalc)
+    {
+      calcList.push_back(auxCalc);
+    }
   }
 
   readFile.close();
+  return calcList;
 }
 
-void File::writeToFile()
+void File::writeToFile(Calculator calc)
 {
   ofstream writeFile(FILE_NAME, ios::app);
 
-  if (!writeFile.is_open())
+  if (!writeFile.good())
   {
-    throw bad_alloc();
+    cout << "Problemas con el archivo..." << endl;
   }
-
-  list<Calculator>::iterator it;
-  for (it = calculatorList->begin(); it != calculatorList->end(); it++)
+  else
   {
-    writeFile << *it;
+    writeFile << calc;
   }
 
   writeFile.close();
 }
 
-void File::addToList(Calculator calc)
+int File::getLastId()
 {
-  calculatorList->push_back(calc);
+  ifstream readFile(FILE_NAME);
+
+  if (!readFile.good())
+  {
+    return 0;
+  }
+  else
+  {
+    list<Calculator> calcList;
+
+    calcList = readFromFile();
+    return calcList.back().getId();
+  }
 }

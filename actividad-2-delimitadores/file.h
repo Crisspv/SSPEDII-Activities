@@ -12,15 +12,12 @@ using namespace std;
 class File
 {
 private:
-  list<Calculator> *calculatorList;
-
 public:
   File();
 
-  void readFromFile();
-  void writeToFile();
-
-  void addToList(Calculator);
+  list<Calculator> readFromFile();
+  void writeToFile(Calculator);
+  int getLastId();
 };
 
 #endif // FILE_H

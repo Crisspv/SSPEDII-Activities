@@ -8,24 +8,28 @@ void Calculator::sum()
 {
   setRes(getNum1() + getNum2());
   setOperation("suma");
+  generateDate();
 }
 
 void Calculator::subtraction()
 {
   setRes(getNum1() - getNum2());
   setOperation("resta");
+  generateDate();
 }
 
 void Calculator::multiplication()
 {
   setRes(getNum1() * getNum2());
   setOperation("multiplicacion");
+  generateDate();
 }
 
 void Calculator::division()
 {
   setRes(getNum1() / getNum2());
   setOperation("division");
+  generateDate();
 }
 
 int Calculator::getId()
@@ -33,9 +37,9 @@ int Calculator::getId()
   return id;
 }
 
-void Calculator::setId(int id)
+void Calculator::setId(int newId)
 {
-  id = id;
+  id = newId;
 }
 
 string Calculator::getOperation()
@@ -86,6 +90,16 @@ string Calculator::getDate()
 void Calculator::setDate(string d)
 {
   date = d;
+}
+
+void Calculator::generateDate()
+{
+  const int MAXLEN = 80;
+  char date[MAXLEN];
+  time_t t = time(0);
+  strftime(date, MAXLEN, "%m/%d/%Y", localtime(&t));
+
+  setDate(date);
 }
 
 ostream &operator<<(ostream &os, const Calculator &c)
