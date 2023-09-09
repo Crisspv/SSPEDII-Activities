@@ -2,6 +2,7 @@
 #define MENU_H
 
 #include <iostream>
+#include <algorithm>
 
 #include "calculator.h"
 #include "file.h"
@@ -16,6 +17,7 @@ private:
   void calculatorMenu();
   void fileMenu();
   void printCalc(Calculator);
+  void modifyCalc(Calculator &);
 
 public:
   Menu();

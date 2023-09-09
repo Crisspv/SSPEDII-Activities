@@ -43,6 +43,26 @@ void File::writeToFile(Calculator calc)
   writeFile.close();
 }
 
+void File::writeListToTempFile(list<Calculator> calcList)
+{
+  ofstream writeFile(TEMP_FILE_NAME, ios::app);
+
+  if (!writeFile.good())
+  {
+    cout << "Problemas con el archivo..." << endl;
+  }
+  else
+  {
+    list<Calculator>::iterator it;
+    for (it = calcList.begin(); it != calcList.end(); ++it)
+    {
+      writeFile << *it;
+    }
+  }
+
+  writeFile.close();
+}
+
 int File::getLastId()
 {
   ifstream readFile(FILE_NAME);

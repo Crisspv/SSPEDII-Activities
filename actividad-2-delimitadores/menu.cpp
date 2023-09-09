@@ -111,6 +111,8 @@ void Menu::calculatorMenu()
       cin >> num2;
       cin.ignore();
 
+      newId = myFile.getLastId() + 1;
+      myCalc.setId(newId);
       myCalc.setNum1(num1);
       myCalc.setNum2(num2);
       myCalc.subtraction();
@@ -129,6 +131,8 @@ void Menu::calculatorMenu()
       cin >> num2;
       cin.ignore();
 
+      newId = myFile.getLastId() + 1;
+      myCalc.setId(newId);
       myCalc.setNum1(num1);
       myCalc.setNum2(num2);
       myCalc.multiplication();
@@ -147,6 +151,8 @@ void Menu::calculatorMenu()
       cin >> num2;
       cin.ignore();
 
+      newId = myFile.getLastId() + 1;
+      myCalc.setId(newId);
       myCalc.setNum1(num1);
       myCalc.setNum2(num2);
       myCalc.division();
@@ -170,8 +176,12 @@ void Menu::fileMenu()
   char choice;
 
   File myFile;
+  Calculator myCalc;
   list<Calculator> calcList;
   list<Calculator>::iterator it;
+
+  int search;
+  char operation;
 
   do
   {
@@ -181,6 +191,9 @@ void Menu::fileMenu()
 
     cout << "1. Agregar" << endl;
     cout << "2. Mostrar todo" << endl;
+    cout << "3. Buscar" << endl;
+    cout << "5. Modificar" << endl;
+    cout << "6. eliminar" << endl;
     cout << "c. Regresar"
          << endl
          << endl;
@@ -192,7 +205,7 @@ void Menu::fileMenu()
     switch (choice)
     {
     case '1':
-
+      calculatorMenu();
       break;
 
     case '2':
@@ -204,6 +217,45 @@ void Menu::fileMenu()
       enterToContinue();
       break;
 
+    case '3':
+      int search;
+      cout << "Ingresa el id a buscar: ";
+      cin >> search;
+      cin.ignore();
+
+      calcList = myFile.readFromFile();
+      for (it = calcList.begin(); it != calcList.end(); ++it)
+      {
+        if (search == it->getId())
+        {
+          printCalc(*it);
+          enterToContinue();
+          break;
+        }
+      }
+      break;
+
+    case '4':
+      cout << "Ingresa el id a modificar: ";
+      cin >> search;
+      cin.ignore();
+
+      calcList = myFile.readFromFile();
+      for (it = calcList.begin(); it != calcList.end(); ++it)
+      {
+        if (search == it->getId())
+        {
+          modifyCalc(*it);
+        }
+      }
+      break;
+
+    case '5':
+      break;
+
+    case '6':
+      break;
+
     case 'c':
       break;
 
@@ -211,6 +263,56 @@ void Menu::fileMenu()
       cout << "opcion incorrecta..." << endl;
       enterToContinue();
     }
+  } while (choice != 'c');
+}
+
+void Menu::modifyCalc(Calculator &calc)
+{
+  char choice;
+  int num1, num2;
+
+  do
+  {
+    cls();
+    cout << "Elemento encontrado!" << endl
+         << endl;
+
+    cout << "Elije operacion nueva:" << endl;
+    cout << "1. Suma" << endl;
+    cout << "2. Resta" << endl;
+    cout << "3. Multiplicacion" << endl;
+    cout << "4. Division" << endl;
+    cout << "c. Regresar" << endl
+         << endl;
+
+    cout << "Opcion: ";
+    cin >> choice;
+    cin.ignore();
+
+    switch (choice)
+    {
+    case '1':
+      cout << "Num1: ";
+      cin >> num1;
+      cin.ignore();
+
+      cout << "Num2: ";
+      cin >> num2;
+      cin.ignore();
+
+      calc.setNum1(num1);
+      calc.setNum2(num2);
+      calc.sum();
+      break;
+
+    case 'c':
+      break;
+
+    default:
+      cout << "opcion incorrecta..." << endl;
+      enterToContinue();
+    }
+
   } while (choice != 'c');
 }
 

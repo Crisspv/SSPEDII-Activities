@@ -6,6 +6,7 @@
 #include "calculator.h"
 
 #define FILE_NAME "calculator_registry.txt"
+#define TEMP_FILE_NAME "temp.txt"
 
 using namespace std;
 
@@ -17,6 +18,8 @@ public:
 
   list<Calculator> readFromFile();
   void writeToFile(Calculator);
+  void writeListToTempFile(list<Calculator>);
+
   int getLastId();
 };
 
