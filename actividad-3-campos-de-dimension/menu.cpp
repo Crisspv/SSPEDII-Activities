@@ -35,7 +35,7 @@ void Menu::mainMenu()
 
   do
   {
-    // cls();
+    cls();
     cout << "ACTIVIDAD 3" << endl
          << endl;
     cout << "1. Insertar Alumno" << endl;
@@ -90,7 +90,7 @@ void Menu::mainMenu()
       break;
 
     case '2':
-      // cls();
+      cls();
       cout << "Lista de alumnos" << endl
            << endl;
       studentsList = myFile.loadAllStudents();
@@ -127,6 +127,24 @@ void Menu::mainMenu()
       cin >> search;
       cin.ignore();
 
+      findedStudent = myFile.findStudent(search);
+      if (findedStudent)
+      {
+        cout << endl;
+        cout << "Registro encontrado!!" << endl
+             << endl;
+        printStudent(*findedStudent);
+        modifyStudent(*findedStudent);
+
+        myFile.updateStudent(findedStudent);
+        cout << "Registro modificado con exito..." << endl;
+      }
+      else
+      {
+        cout << endl;
+        cout << "Registro no encontrado..." << endl;
+      }
+      enterToContinue();
       break;
 
     case '5':
@@ -134,6 +152,23 @@ void Menu::mainMenu()
       cin >> search;
       cin.ignore();
 
+      findedStudent = myFile.findStudent(search);
+      if (findedStudent)
+      {
+        cout << endl;
+        cout << "Registro encontrado!!" << endl
+             << endl;
+        printStudent(*findedStudent);
+
+        myFile.deleteStudent(findedStudent);
+        cout << "Registro eliminado con exito..." << endl;
+      }
+      else
+      {
+        cout << endl;
+        cout << "Registro no encontrado..." << endl;
+      }
+      enterToContinue();
       break;
 
     case 'c':
@@ -149,13 +184,8 @@ void Menu::mainMenu()
 
 void Menu::modifyStudent(Student &student)
 {
-  int code, semester, generalAverage;
+  int semester, generalAverage;
   string name, lastName;
-
-  cout << endl;
-  cout << "Codigo: ";
-  cin >> code;
-  cin.ignore();
 
   cout << "Nombre: ";
   getline(cin, name);
@@ -170,7 +200,6 @@ void Menu::modifyStudent(Student &student)
   cin >> generalAverage;
   cin.ignore();
 
-  student.setCode(code);
   student.setName(name);
   student.setLastName(lastName);
   student.setSemester(semester);

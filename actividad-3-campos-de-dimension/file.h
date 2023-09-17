@@ -21,6 +21,10 @@ public:
   void writeToFile(Student);
   list<Student> loadAllStudents();
   Student *findStudent(int);
+  void updateStudent(Student *);
+  void writeToTempFile(Student);
+  void deleteStudent(Student *);
+  bool isEmpty();
 };
 
 #endif // FILE_H
