@@ -11,10 +11,11 @@ private:
   string name;
   string lastName;
   int semester;
-  float generalAverage;
+  int generalAverage;
 
 public:
   Student();
+  Student(int, string, string, int, int);
 
   int getCode();
   void setCode(int);
@@ -24,11 +25,8 @@ public:
   void setLastName(string);
   int getSemester();
   void setSemester(int);
-  float getGeneralAverage();
-  void setGeneralAverage(float);
-
-  friend ostream &operator<<(ostream &, const Student &);
-  friend istream &operator>>(istream &, Student &);
+  int getGeneralAverage();
+  void setGeneralAverage(int);
 };
 
 #endif // STUDENT_H

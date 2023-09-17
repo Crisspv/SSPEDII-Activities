@@ -4,6 +4,15 @@ Student::Student()
 {
 }
 
+Student::Student(int code, string name, string lastName, int semester, int generalAverage)
+{
+  this->code = code;
+  this->name = name;
+  this->lastName = lastName;
+  this->semester = semester;
+  this->generalAverage = generalAverage;
+}
+
 int Student::getCode()
 {
   return code;
@@ -44,32 +53,12 @@ void Student::setSemester(int s)
   semester = s;
 }
 
-float Student::getGeneralAverage()
+int Student::getGeneralAverage()
 {
   return generalAverage;
 }
 
-void Student::setGeneralAverage(float gA)
+void Student::setGeneralAverage(int gA)
 {
   generalAverage = gA;
-}
-
-ostream &operator<<(ostream &os, const Student &s)
-{
-  os << sizeof s.code
-     << s.code
-     << sizeof s.name
-     << s.name
-     << sizeof s.lastName
-     << s.lastName
-     << sizeof s.semester
-     << s.semester
-     << sizeof s.generalAverage
-     << s.generalAverage;
-
-  return os;
-}
-
-istream &operator>>(istream &is, Student &s)
-{
 }

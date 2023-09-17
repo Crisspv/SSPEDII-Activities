@@ -23,20 +23,19 @@ void Menu::enterToContinue()
 void Menu::mainMenu()
 {
   char choice;
-  int code, semester, search;
+  int code, semester, search, generalAverage;
   string name, lastName;
-  float generalAverage;
   bool isFound = false;
 
   Student myStudent;
-  File myFile;
-
+  Student *findedStudent;
   list<Student> studentsList;
   list<Student>::iterator it;
+  File myFile;
 
   do
   {
-    cls();
+    // cls();
     cout << "ACTIVIDAD 3" << endl
          << endl;
     cout << "1. Insertar Alumno" << endl;
@@ -54,7 +53,6 @@ void Menu::mainMenu()
     switch (choice)
     {
     case '1':
-      cout << endl;
       cout << "Codigo: ";
       cin >> code;
       cin.ignore();
@@ -72,7 +70,9 @@ void Menu::mainMenu()
       cin >> generalAverage;
       cin.ignore();
 
-      if (!myFile.isCodeExisting(code))
+      // checck the code is not repeated
+      findedStudent = myFile.findStudent(code);
+      if (!findedStudent)
       {
         myStudent.setCode(code);
         myStudent.setName(name);
@@ -90,7 +90,10 @@ void Menu::mainMenu()
       break;
 
     case '2':
-      studentsList = myFile.readFromFile();
+      // cls();
+      cout << "Lista de alumnos" << endl
+           << endl;
+      studentsList = myFile.loadAllStudents();
       for (it = studentsList.begin(); it != studentsList.end(); ++it)
       {
         printStudent(*it);
@@ -99,96 +102,38 @@ void Menu::mainMenu()
       break;
 
     case '3':
-      cout << endl;
       cout << "Ingresa el codigo a buscar: ";
       cin >> search;
       cin.ignore();
 
-      studentsList = myFile.readFromFile();
-      for (it = studentsList.begin(); it != studentsList.end(); ++it)
+      findedStudent = myFile.findStudent(search);
+      if (findedStudent)
       {
-        if (search == it->getCode())
-        {
-          isFound = true;
-          printStudent(*it);
-          enterToContinue();
-          break;
-        }
+        cout << endl;
+        cout << "Registro encontrado!!" << endl
+             << endl;
+        printStudent(*findedStudent);
       }
-
-      if (!isFound)
+      else
       {
-        cout << "Registro no encontrado" << endl;
-        enterToContinue();
+        cout << endl;
+        cout << "Registro no encontrado..." << endl;
       }
+      enterToContinue();
       break;
 
     case '4':
-      cout << endl;
       cout << "Ingresa el codigo a modificar: ";
       cin >> search;
       cin.ignore();
 
-      studentsList = myFile.readFromFile();
-      for (it = studentsList.begin(); it != studentsList.end(); ++it)
-      {
-        if (search == it->getCode())
-        {
-          isFound = true;
-          modifyStudent(*it);
-          enterToContinue();
-          break;
-        }
-      }
-
-      if (!isFound)
-      {
-        cout << "Registro no encontrado" << endl;
-        enterToContinue();
-      }
-      else
-      {
-        myFile.writeListToTempFile(studentsList);
-        cout << "Registro modificado exitosamente..." << endl;
-        enterToContinue();
-      }
       break;
 
     case '5':
-      cout << endl;
       cout << "Ingresa el codigo a eliminar: ";
       cin >> search;
       cin.ignore();
 
-      studentsList = myFile.readFromFile();
-      for (it = studentsList.begin(); it != studentsList.end(); ++it)
-      {
-        if (search == it->getCode())
-        {
-          isFound = true;
-          cout << "Registro encontrado!" << endl;
-          printStudent(*it);
-          it = studentsList.erase(it);
-          enterToContinue();
-          break;
-        }
-        else
-        {
-          it++;
-        }
-      }
-
-      if (!isFound)
-      {
-        cout << "Registro no encontrado" << endl;
-        enterToContinue();
-      }
-      else
-      {
-        myFile.writeListToTempFile(studentsList);
-        cout << "Registro eliminado con exito..." << endl;
-        enterToContinue();
-      }
       break;
 
     case 'c':
@@ -204,9 +149,8 @@ void Menu::mainMenu()
 
 void Menu::modifyStudent(Student &student)
 {
-  int code, semester;
+  int code, semester, generalAverage;
   string name, lastName;
-  float generalAverage;
 
   cout << endl;
   cout << "Codigo: ";

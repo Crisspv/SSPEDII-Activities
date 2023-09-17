@@ -2,7 +2,6 @@
 #define MENU_H
 
 #include <iostream>
-#include <algorithm>
 
 #include "calculator.h"
 #include "file.h"
